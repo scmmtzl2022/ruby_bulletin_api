@@ -7,10 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 user = Post.create(title: "title1",description:"description1", status: 1, create_user_id: 1, update_user_id: 1)
 User.create!([{
-  name: "May Thu",
-  email: "scm.maythuzarlin@gmail.com",
+  name: "Thu Thu",
+  profile: 'download.png',
+  email: "thuthu@gmail.com",
   password: "aaaaaaaa",
   role: '0',
+  phone: '09251047256',
+  address: 'Insein',
+  dob: '2022-06-01',
   create_user_id: 1,
   update_user_id: 1,
 },])
