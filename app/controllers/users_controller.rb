@@ -54,7 +54,20 @@ class UsersController < ApplicationController
       render json: {data: "Profile Updated Successfully"}      
     end
   end
-
+  # USER'S PASSWORD CHANGE ERROR
+  def pwupdate
+    result = User::Operation::Password.(params: params)
+    if result[:error]
+      render json: result[:error], status: 401
+    end
+  end
+  
+  # USER'S PASSWORD CHANGE SUCCESS
+  def pwupdated
+    result = User::Operation::Password::Change.(params: params)
+    token = encode_token({user_id: result[:params][:id]})
+    render json: {user: result[:params], token: token, noti: "Password is successfully updated"}
+  end
   # USER SOFT DELETE
   def delete
     result = User::Operation::Update::Delete.(params: params)

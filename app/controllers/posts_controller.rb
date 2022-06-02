@@ -43,7 +43,22 @@ class PostsController < ApplicationController
     Post::Operation::Create.(params: params)
     render json: {noti: "Post Successfully created"}, status: 201
   end
+  # POST CSV UPLOAD
+  def import
+    result = Post::Operation::Import.(params:params)
+    if result[:error]
+      return render json: {error: result[:error]}, status: 422
+    elsif result[:error1] && result[:error2]
+      return render json: {error1: result[:error1], error2: result[:error2]}, status: 422
+    end
+    render json: {data: "File successfully Uploaded"}
+  end
 
+  # POST CSV DOWNLOAD
+  def export
+    result = Post::Operation::Export.(params: params)
+    render json: result[:model]
+  end
   # POST INFO
   def details
     result = Post::Operation::Update::Detail.(params: params)

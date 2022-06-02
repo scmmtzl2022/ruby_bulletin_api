@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   put "/update", to: "users#update"
   put "/user/get", to: "users#get"
   put "/user/delete", to: "users#delete"
+  put "/user/pwupdate", to: "users#pwupdate"
+  put "/user/pwupdated", to: "users#pwupdated"
+  
   # For Posts
   get "/post/list", to: "posts#list"
   post "/post/list/user", to: "posts#list_user"
